@@ -1,10 +1,10 @@
 #include "stack.h"
-#include <iostream>
-
-using namespace std;
 
 template <class Type>
-Stack<Type>::Stack() {}
+Stack<Type>::Stack() {
+  this->capacity = 0;
+  this->top = 0;
+}
 
 template <class Type>
 Stack<Type>::Stack(int capacity) {
@@ -15,25 +15,30 @@ Stack<Type>::Stack(int capacity) {
 
 template <class Type>
 void Stack<Type>::push(Type data) {
-  if (capacity != top) {
-    this->stack[top] = data;
+  // Check if stack size enough
+  if (this->capacity != this->top) {
+    this->stack[this->top] = data;
     this->top++;
   }
   else {
-    int* temp = new int[this->top];
-    temp = this->stack;
-    delete[] this->stack;
-    this->stack = new int[capacity * 2];
+    // Create new pointer to save old stack
+    Type* temp = this->stack;
+    this->capacity *= 2;
 
+    // Create new stack twice large
+    this->stack = new Type[this->capacity];
+
+    // Copy old stack to new
     for (int i = 0; i < top; i++) {
       this->stack[i] = temp[i];
     }
 
+    // Delete old stack
     delete[] temp;
 
-    this->capacity *= 2;
+    // Push data
     this->stack[this->top] = data;
-    this->top++;
+    top++;
   }
 }
 
@@ -49,21 +54,21 @@ Type Stack<Type>::peek() {
 }
 
 template <class Type>
-bool Stack<Type>::isFull() {
-  return capacity == top;
-}
-
-template <class Type>
-bool Stack<Type>::isEmpty() {
-  return 0 == top;
-}
-
-template <class Type>
 int Stack<Type>::size() {
   return this->capacity;
 }
 
 template <class Type>
+bool Stack<Type>::isFull() {
+  return this->capacity == this->top;
+}
+
+template <class Type>
+bool Stack<Type>::isEmpty() {
+  return 0 == this->top;
+}
+
+template <class Type>
 Stack<Type>::~Stack() {
-  delete[] this->stack;
+  delete[] stack;
 }
