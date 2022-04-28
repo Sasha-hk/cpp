@@ -32,3 +32,5 @@
 *.app
 
 main
+
+.vscode/settings.json
