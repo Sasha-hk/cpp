@@ -75,7 +75,7 @@ template <class Type> class Stack {
      * Peek item
      */
     Type peek() {
-      return this->stack[this->top];
+      return this->stack[this->top - 1];
     }
 
     /**
