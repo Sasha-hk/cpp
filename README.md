@@ -2,11 +2,12 @@
 
 This repository collect list of my knowledge in cpp
 
-Structure:
+Table of contents:
 
-- algorithms
-  - [`bable sort`](./algorithms/sort/bubble_sort.cpp)
-  - [`binary search`](./algorithms/search/search_binary.cpp)
-
-- different
-  - [`recursion`](./different/recursion.cpp)
+- [algorithms](./algorithms/)
+  - [sorting](./algorithms/sort/)
+  - [searching](./algorithms//search/)
+- [data structures](./data-structures/)
+  - [stack](./data-structures/stack/)
+- [different](./different/)
+  - [recursion](./different/recursion.cpp)
