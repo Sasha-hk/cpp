@@ -11,19 +11,49 @@ class Stack {
 
   public:
     Stack();
-    Stack(int size);
 
-    void push(int data);
+    Stack(int size) {
+      this->maxSize = maxSize;
+      this->stack = new int[this->maxSize];
+    }
 
-    int pop();
+    void push(int data) {
+      if (size != maxSize) {
+        this->stack[size] = data;
+        this->size++;
+      }
+      else {
+        int* temp = new int[this->maxSize];
+        temp = this->stack;
+        delete[] this->stack;
+        this->stack = new int[maxSize*2];
 
-    int getMaxSize();
+        for (int i = 0; i < size; i++) {
+          this->stack[i] = temp[i];
+        }
 
-    int getSize();
+        this->maxSize *= 2;
+        this->stack[this->size] = data;
+        this->size++;
+      }
+    }
+
+    int pop() {
+      this->size--;
+      return this->stack[this->size];
+    }
+
+    int getMaxSize() {
+      return this->maxSize;
+    }
+
+    int getSize() {
+      return this->size;
+    }
 
     ~Stack() {
       delete[] stack;
     }
 };
 
-#endif 
+#endif
