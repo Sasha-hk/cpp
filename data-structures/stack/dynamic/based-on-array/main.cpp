@@ -9,8 +9,9 @@ int main() {
   st.push(256);
   st.push(512);
 
-  cout << "Pop 1: " << st.pop() << endl;
-  cout << "Pop 2: " << st.pop() << endl;
+  cout << "Pop  2: " << st.pop() << endl;
+  cout << "peek 1: " << st.peek() << endl;
+  cout << "Pop  1: " << st.pop() << endl;
 
   return 0;
 }
