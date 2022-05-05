@@ -12,6 +12,7 @@ int main() {
   st.push(512);
   st.push(1024);
 
+  cout << st.peek() << endl;
   cout << st.pop() << endl;
   cout << st.getSize() << endl;
   cout << st.getMaxSize() << endl;

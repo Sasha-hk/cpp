@@ -13,7 +13,7 @@ class Stack {
     Stack();
 
     Stack(int size) {
-      this->maxSize = maxSize;
+      this->maxSize = size;
       this->stack = new int[this->maxSize];
     }
 
@@ -41,6 +41,10 @@ class Stack {
     int pop() {
       this->size--;
       return this->stack[this->size];
+    }
+
+    int peek() {
+      return this->stack[this->size - 1];
     }
 
     int getMaxSize() {
