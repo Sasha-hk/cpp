@@ -2,35 +2,30 @@
 
 using namespace std;
 
-int main() {
-  int array[7] = { 0, 5, 9, 3, 2, 1, 7 };
+void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
 
-  int swap = 0;
-  int minElement = 0;
-  int minPosition = 0;
-  int arrayLength = sizeof(array) / sizeof(array[0]);
-  int start = 0;
-
-  while (start != arrayLength) {
-    minElement = array[start];
-    minPosition = start;
-
-    for (int i = start + 1; i < arrayLength; i++) {
-      if (array[i] < minElement) {
-        minElement = array[i];
-        minPosition = i;
-        break;
+void selectionSort(int array[], int size) {
+  for (int step = 0; step < size - 1; step++) {
+    int min_idx = step;
+    for (int i = step + 1; i < size; i++) {
+      if (array[i] < array[min_idx]) {
+        min_idx = i;
       }
     }
 
-    if (minPosition != arrayLength) {
-      swap = array[start];
-      array[start] = minElement;
-      array[minPosition] = swap;
-    }
-
-    start++;
+    swap(&array[min_idx], &array[step]);
   }
+}
+
+int main() {
+  int array[10] = { 93, 82, 3, -10, 0, 1, 23, 12, 9, 50 };
+  int arrayLength = sizeof(array) / sizeof(array[0]);
+
+  selectionSort(array, arrayLength);
 
   for (int i = 0; i < arrayLength; i++) {
     cout << array[i] << " ";
