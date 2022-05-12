@@ -2,8 +2,13 @@
 
 #ifndef TREE
 #define TREE
+#define COUNT 10
 
-#include <cstddef>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
 
 /**
  * Node structure
@@ -133,6 +138,10 @@ template <class Type> class Tree {
       return compare;
     }
 
+    Node<Type>* getRoot() {
+      return root;
+    }
+
     /**
      * Get element
      *
@@ -172,6 +181,28 @@ template <class Type> class Tree {
       else if (node->data < data) {
         node->right = newNode;
       }
+    }
+
+    void _printTree(Node<Type>* root, int space) {
+      if (root == NULL) {
+        return;
+      }
+
+      space += COUNT;
+
+      _printTree(root->right, space);
+
+      cout << endl;
+      for (int i = COUNT; i < space; i++) {
+        cout << " ";
+      }
+      cout << root->data << "\n";
+
+      _printTree(root->left, space);
+    }
+
+    void printTree(Node<Type>* root) {
+      _printTree(root, 0);
     }
 
     /**
