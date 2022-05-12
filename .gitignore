@@ -1,10 +1,2 @@
-# Ignore all
-*
-
-# But except for such file extensions
-!*.cpp
-!*.hpp
-!*.h
-!*.md
-!.gitignore
-!.editorconfig
+.vscode/
+main
