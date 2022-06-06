@@ -27,6 +27,43 @@ class CLI {
   protected:
     vector<MenuOption> menuOptions;
 
+    /**
+     * Show menu options
+     *
+     * @param menuOptions options to show
+     */
+    void showOptions(vector<MenuOption> menuOptions) {
+      cout << "Select option:" << endl << endl;
+
+      for (int i = 0; i < menuOptions.size(); i++) {
+        cout << " " << i + 1 << " - " << menuOptions[i].name << endl;
+      }
+    }
+
+    /**
+     * Make choice
+     *
+     * @param menuOptions options to select
+     */
+    void makeChoice(vector<MenuOption> menuOptions) {
+      int choice;
+
+      while (true) {
+        cout << endl << " > ";
+
+        cin >> choice;
+
+        if (choice - 1 < menuOptions.size() && choice >= 1) {
+          break;
+        }
+      }
+
+      clearConsole();
+
+      // Run options callback
+      menuOptions[choice - 1].callback();
+    }
+
   public:
     /**
      * Default constructor
@@ -66,29 +103,11 @@ class CLI {
     void selectOptions() {
       clearConsole();
 
-      cout << "Select option:" << endl << endl;
+      showOptions(menuOptions);
 
-      for (int i = 0; i < menuOptions.size(); i++) {
-        cout << " " << i + 1 << " - " << menuOptions[i].name << endl;
-      }
+      makeChoice(menuOptions);
 
-      int choice;
-
-      while (true) {
-        cout << endl << " > ";
-
-        cin >> choice;
-
-        if (choice - 1 < menuOptions.size() && choice >= 1) {
-          break;
-        }
-      }
-
-      clearConsole();
-
-      menuOptions[choice - 1].callback();
-
-      further();
+      freeze();
     }
 
     /**
@@ -99,29 +118,11 @@ class CLI {
     void selectOptions(vector<MenuOption> menuOptions) {
       clearConsole();
 
-      cout << "Select option:" << endl << endl;
+      showOptions(menuOptions);
 
-      for (int i = 0; i < menuOptions.size(); i++) {
-        cout << " " << i + 1 << " - " << menuOptions[i].name << endl;
-      }
+      makeChoice(menuOptions);
 
-      int choice;
-
-      while (true) {
-        cout << endl << " > ";
-
-        cin >> choice;
-
-        if (choice - 1 < menuOptions.size() && choice >= 1) {
-          break;
-        }
-      }
-
-      clearConsole();
-
-      menuOptions[choice - 1].callback();
-
-      further();
+      freeze();
     }
 
     /**
@@ -132,9 +133,9 @@ class CLI {
     }
 
     /**
-     * Further after execution menu option callback
+     * Stop after execution menu option callback
      */
-    int further() {
+    int freeze() {
       string input;
       cout << "\nPress enter to continue ";
       getline(cin, input);

@@ -6,12 +6,15 @@
 
 using namespace std;
 
+// Create database
 DB database = DB({"id", "name", "age"}, "db.json");
 
+// Add visitor callback
 void addVisitor() {
   database.addRecord();
 }
 
+// Remove visitor callback
 void removeVisitor() {
   string id = input("Enter id to remove: ");
 
@@ -27,7 +30,8 @@ void removeVisitor() {
   database.resetJson(updateJson);
 }
 
-void findByName() {
+// Find by name callback
+void findBy() {
   cout << "\n";
   string findBy = input("Enter field to find by: ");
   string value = input("Enter value to fund: ");
@@ -56,12 +60,14 @@ void findByName() {
   }
 }
 
+// Show database callback
 void showDatabase() {
   Json::Value json = database.read();
 
   cout << json << endl;
 }
 
+// Exit callback
 void exitFunction() {
   exit(0);
 }
@@ -79,7 +85,7 @@ int main() {
     },
     {
       "find by",
-      findByName,
+      findBy,
     },
     {
       "show database",
@@ -91,6 +97,7 @@ int main() {
     }
   });
 
+  // Select options loop
   while (true) {
     cli.selectOptions();
   }
