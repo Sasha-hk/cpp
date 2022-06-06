@@ -19,7 +19,7 @@ template <class Type> class Stack {
 
   public:
     /**
-     * Defalt constructor
+     * Default constructor
      */
     Stack() {
       this->capacity = 0;
@@ -28,6 +28,7 @@ template <class Type> class Stack {
 
     /**
      * Push data to stack
+     *
      * @param data Data
      */
     void push(Type data) {
